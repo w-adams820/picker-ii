@@ -13,17 +13,17 @@ const winnerName = document.getElementById('winnerName');
 const progressBar = document.getElementById('progressBar');
 
 let isSpinning = false;
+let usedNames = new Set();
 
 // Event Interceptor Listeners
 nameInput.addEventListener('input', () => {
-    const names = getNames();
-    nameCount.innerText = `${names.length} STUDENTS READY`;
+    updateNameCount();
 });
 
 spinBtn.addEventListener('click', startPicker);
 
 // Initialize count display when page loads
-nameCount.innerText = '0 STUDENTS READY';
+updateNameCount();
 
 // Converts raw user lines to sanitized arrays
 function getNames() {
@@ -35,16 +35,38 @@ function getNames() {
 // Resets internal configurations
 function clearList() {
     nameInput.value = '';
-    nameCount.innerText = '0 STUDENTS READY';
+    usedNames.clear();
+    updateNameCount();
+    idleState.classList.remove('hidden');
+    shufflingState.classList.add('hidden');
+    winnerState.classList.add('hidden');
+    displayStage.classList.remove('winner-glow');
+}
+
+function getUniqueNames(names) {
+    return Array.from(new Set(names));
+}
+
+function updateNameCount() {
+    const uniqueNames = getUniqueNames(getNames());
+    const remainingNames = uniqueNames.filter(name => !usedNames.has(name));
+    nameCount.innerText = `${remainingNames.length} STUDENTS READY`;
 }
 
 // Begins selection calculation mechanics
 function startPicker() {
-    const names = getNames();
-    if (names.length === 0) {
-        alert("Please add some student names first!");
+    const uniqueNames = getUniqueNames(getNames());
+    const availableNames = uniqueNames.filter(name => !usedNames.has(name));
+
+    if (availableNames.length === 0) {
+        if (uniqueNames.length === 0) {
+            alert('Please add some student names first!');
+        } else {
+            alert('All names have already been picked. Clear the list or add new names to continue.');
+        }
         return;
     }
+
     if (isSpinning) return;
 
     isSpinning = true;
@@ -59,7 +81,7 @@ function startPicker() {
     
     // Initialize High Stakes Shuffling Loop
     let shuffleInterval = setInterval(() => {
-        const randomName = names[Math.floor(Math.random() * names.length)];
+        const randomName = availableNames[Math.floor(Math.random() * availableNames.length)];
         shuffleText.innerText = randomName;
     }, 80);
 
@@ -71,7 +93,7 @@ function startPicker() {
     // Complete calculation sequence after 2000 milliseconds
     setTimeout(() => {
         clearInterval(shuffleInterval);
-        const finalWinner = names[Math.floor(Math.random() * names.length)];
+        const finalWinner = availableNames[Math.floor(Math.random() * availableNames.length)];
         announceWinner(finalWinner);
     }, 2000);
 }
@@ -80,6 +102,8 @@ function startPicker() {
 function announceWinner(name) {
     isSpinning = false;
     spinBtn.disabled = false;
+    usedNames.add(name);
+    updateNameCount();
     
     displayStage.classList.remove('shuffling');
     shufflingState.classList.add('hidden');
