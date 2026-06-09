@@ -1,0 +1,43 @@
+/* Google Material Symbols Font Configuration */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Shuffling Borders State Animation */
+@keyframes strobe {
+    0% { border-color: #00dbe9; box-shadow: 0 0 10px #00dbe9; }
+    33% { border-color: #fface8; box-shadow: 0 0 10px #fface8; }
+    66% { border-color: #a0d800; box-shadow: 0 0 10px #a0d800; }
+    100% { border-color: #00dbe9; box-shadow: 0 0 10px #00dbe9; }
+}
+
+.shuffling {
+    animation: strobe 0.2s linear infinite;
+}
+
+/* Post-Selection Celebration Glows */
+.winner-glow {
+    box-shadow: 0 0 40px rgba(0, 219, 233, 0.6), inset 0 0 20px rgba(0, 219, 233, 0.2);
+}
+
+/* Glassmorphism Panel Filter Specs */
+.glass-panel {
+    background: rgba(13, 21, 21, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* Custom Scrollbar System Engine Layout overrides */
+::-webkit-scrollbar { 
+    width: 6px; 
+}
+::-webkit-scrollbar-track { 
+    background: #080f10; 
+}
+::-webkit-scrollbar-thumb { 
+    background: #2e3637; 
+    border-radius: 10px; 
+}
+::-webkit-scrollbar-thumb:hover { 
+    background: #3b494b; 
+}

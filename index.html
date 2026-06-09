@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Matthew's Picker - High Stakes Selection</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&amp;family=Space+Grotesk:wght@500;700&amp;family=Hanken+Grotesk:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Sora:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#dbfcff",
+                      "primary-fixed-dim": "#00dbe9",
+                      "surface": "#0d1515",
+                      "tertiary-fixed-dim": "#a0d800",
+                      "surface-container-highest": "#2e3637",
+                      "on-primary": "#00363a",
+                      "surface-bright": "#333b3b",
+                      "inverse-primary": "#006970",
+                      "on-secondary-fixed": "#3a0033",
+                      "outline": "#849495",
+                      "on-primary-fixed-variant": "#004f54",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#002022",
+                      "outline-variant": "#3b494b",
+                      "on-primary-container": "#006970",
+                      "on-secondary": "#5e0053",
+                      "tertiary-fixed": "#b7f700",
+                      "secondary-fixed": "#ffd7f0",
+                      "primary-fixed": "#7df4ff",
+                      "surface-container-low": "#151d1e",
+                      "primary-container": "#00f0ff",
+                      "on-secondary-fixed-variant": "#840076",
+                      "inverse-on-surface": "#2a3233",
+                      "on-tertiary-fixed": "#141f00",
+                      "background": "#0d1515",
+                      "on-secondary-container": "#520049",
+                      "surface-variant": "#2e3637",
+                      "on-surface": "#dce4e5",
+                      "on-tertiary-container": "#4b6800",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#fface8",
+                      "on-tertiary": "#253600",
+                      "surface-tint": "#00dbe9",
+                      "error": "#ffb4ab",
+                      "tertiary-container": "#afed00",
+                      "secondary-container": "#ff24e4",
+                      "surface-container": "#192122",
+                      "surface-container-high": "#232b2c",
+                      "on-error": "#690005",
+                      "surface-container-lowest": "#080f10",
+                      "on-tertiary-fixed-variant": "#374e00",
+                      "on-surface-variant": "#b9cacb",
+                      "tertiary": "#e8ffb6",
+                      "surface-dim": "#0d1515",
+                      "secondary": "#fface8",
+                      "on-background": "#dce4e5",
+                      "inverse-surface": "#dce4e5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "card-gap": "16px",
+                      "container-padding-desktop": "40px",
+                      "unit": "8px",
+                      "container-padding-mobile": "20px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Sora"],
+                      "label-caps": ["Space Grotesk"],
+                      "body-md": ["Hanken Grotesk"],
+                      "display-xl": ["Sora"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "headline-lg-mobile": ["Sora"],
+                      "headline-lg": ["Sora"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-xl": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                  }
+                }
+              }
+            };
+    </script>
+</head>
+<body class="bg-surface text-on-background">
+  <main class="min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-4xl space-y-8">
+      <section class="text-center">
+        <h1 class="text-5xl font-bold">Matthew's Picker</h1>
+        <p class="mt-4 text-lg text-on-surface-variant">High Stakes Selection</p>
+      </section>
+
+      <section class="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <div class="glass-panel rounded-xl border border-surface-container-high p-6">
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+              <h2 class="text-2xl font-semibold">Student names</h2>
+              <p class="mt-1 text-sm text-on-surface-variant">Enter one name per line.</p>
+            </div>
+            <span id="nameCount" class="text-sm font-semibold text-primary">0 STUDENTS READY</span>
+          </div>
+
+          <textarea id="nameInput" rows="10" class="w-full rounded-2xl border border-surface-container-low bg-surface-container px-4 py-3 text-on-background outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Add student names here..."></textarea>
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <button id="spinBtn" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-on-primary shadow-lg shadow-primary/10 transition hover:bg-primary-fixed">Spin</button>
+            <button type="button" onclick="clearList()" class="rounded-full border border-surface-container-high px-6 py-3 text-sm text-on-surface transition hover:border-primary">Clear</button>
+          </div>
+        </div>
+
+        <div id="displayStage" class="glass-panel rounded-xl border border-surface-container-high p-6 min-h-[340px] flex flex-col justify-between">
+          <div id="idleState" class="space-y-3">
+            <div class="text-sm uppercase tracking-[0.3em] text-primary">Ready to choose</div>
+            <div class="text-4xl font-bold">Add names and tap Spin.</div>
+          </div>
+
+          <div id="shufflingState" class="hidden space-y-4">
+            <div class="text-sm uppercase tracking-[0.3em] text-primary">Shuffling</div>
+            <div id="shuffleText" class="text-4xl font-bold">...</div>
+            <div class="h-3 overflow-hidden rounded-full bg-surface-container-low">
+              <div id="progressBar" class="h-full w-0 rounded-full bg-primary transition-all duration-700"></div>
+            </div>
+          </div>
+
+          <div id="winnerState" class="hidden space-y-4">
+            <div class="text-sm uppercase tracking-[0.3em] text-tertiary">Winner</div>
+            <div id="winnerName" class="text-5xl font-black">🎉</div>
+            <p class="text-on-surface-variant">Give the selected student a high-five!</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>                                                                                                                                                                                                                                     
