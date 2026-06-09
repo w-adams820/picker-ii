@@ -5,9 +5,9 @@
 
 /* Shuffling Borders State Animation */
 @keyframes strobe {
-    0% { border-color: #00dbe9; box-shadow: 0 0 10px #00dbe9; }
-    33% { border-color: #fface8; box-shadow: 0 0 10px #fface8; }
-    66% { border-color: #a0d800; box-shadow: 0 0 10px #a0d800; }
+    0% { border-color: #26bbc6; box-shadow: 0 0 10px #00dbe9; }
+    33% { border-color: #ea723b; box-shadow: 0 0 10px #fface8; }
+    66% { border-color: #533af2; box-shadow: 0 0 10px #a0d800; }
     100% { border-color: #00dbe9; box-shadow: 0 0 10px #00dbe9; }
 }
 
